@@ -1,0 +1,35 @@
+---
+#
+# Basic server initialization
+#
+
+- name: Write hostname using jinja2
+  ansible.builtin.template:
+    src: templates/test.j2
+    dest: /tmp/hostname
+
+- name: Copy a new ".bashrc" file into place, backing up the original if it differs from the copied version
+  ansible.builtin.template:
+    src: templates/.bashrc
+    dest: /home/andy/.bashrc
+    owner: andy
+    group: andy
+    mode: '0644'
+    backup: yes
+
+- name: Pause for 5 seconds to build app cache
+  ansible.builtin.pause:
+    seconds: 5
+#   minutes: 5
+
+- name: Pause until you can verify updates to an application were successful
+  ansible.builtin.pause:
+
+- name: Make sure container is up and running
+  ansible.builtin.pause:
+    prompt: "Make sure container is up and running"
+
+- name: Pause to get some sensitive input
+  ansible.builtin.pause:
+    prompt: "Enter a secret"
+    echo: no

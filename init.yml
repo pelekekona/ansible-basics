@@ -1,0 +1,10 @@
+---
+- hosts: localgroup
+  roles:
+    - common
+    - anyrole
+
+# Associate further roles to servers in specific group in this file...
+
+    - init
+

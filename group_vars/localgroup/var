@@ -1,0 +1,5 @@
+---
+# nonsensitive data
+
+# sensitive data
+cr_pat: "{{ vault_cr_pat }}"
