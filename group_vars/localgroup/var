@@ -2,4 +2,4 @@
 # nonsensitive data
 
 # sensitive data
-cr_pat: "{{ vault_cr_pat }}"
+ghcr_io_auth: "{{ vault_ghcr_io_auth }}"
