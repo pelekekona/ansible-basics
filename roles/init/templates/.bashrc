@@ -16,18 +16,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=2000
-HISTFILESIZE=4000
-# Define shortcut
-  alias h='history'
-# Ignore duplicates and commands beginning with a space
-  HISTCONTROL=ignoreboth
-# Ignore specific commands
-  HISTIGNORE='la:ls:ll:bg:fg:h:history'
-# Record timestamps
-  HISTTIMEFORMAT='%F %T '
-# Store history immediately
-  PROMPT_COMMAND='history -a'
+# HISTSIZE=1000
+# HISTFILESIZE=2000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -126,13 +116,20 @@ if ! shopt -oq posix; then
   fi
 fi
 
-#--------------------------------------------------------------
+#-------------------------------------------------------------------------------
+  HISTSIZE=2000
+  HISTFILESIZE=4000
+# Define shortcut
+  alias h='history'
+# Ignore duplicates and commands beginning with a space
+  HISTCONTROL=ignoreboth
+# Ignore specific commands
+  HISTIGNORE='la:ls:ll:bg:fg:h:history'
+# Record timestamps
+  HISTTIMEFORMAT='%F %T '
+# Store history immediately
+  PROMPT_COMMAND='history -a'
+#-------------------------------------------------------------------------------
 # ssh-Aufrufe vervollständigen
-#--------------------------------------------------------------
-complete -W "$(grep '^host '  ~/.ssh/config | cut -d ' ' -f 2-)" ssh
-
-#--------------------------------------------------------------
-# GitHub Container Registry
-# Test: echo $CR_PAT | docker login ghcr.io -u USERNAME --password-stdin
-#--------------------------------------------------------------
-  export CR_PAT={{ cr_pat }}
+  complete -W "$(grep '^host '  ~/.ssh/config | cut -d ' ' -f 2-)" ssh
+#-------------------------------------------------------------------------------

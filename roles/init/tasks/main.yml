@@ -30,8 +30,28 @@
 - name: Template credentials for Gihub Container Registry (ghcr.io)
   tags: ghcr
   ansible.builtin.template:
-    src: templates/.docker/config.json
-    dest: /home/andy/.docker/config.json
+    src: templates/.git-credentials
+    dest: /home/andy/.git-credentials
+    owner: andy
+    group: andy
+    mode: 0600
+    backup: yes
+
+- name: Copy git configuration
+  tags: git
+  ansible.builtin.copy:
+    src: templates/.gitconfig
+    dest: /home/andy/.gitconfig
+    owner: andy
+    group: andy
+    mode: 0600
+    backup: yes
+
+- name: Template gGithub credentials
+  tags: ghcr
+  ansible.builtin.template:
+    src: templates/.git-credentials
+    dest: /home/andy/.git-credentials
     owner: andy
     group: andy
     mode: 0600
