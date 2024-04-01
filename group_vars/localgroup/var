@@ -4,3 +4,4 @@
 # sensitive data
 cr_pat: "{{ vault_cr_pat }}"
 cli_pat: "{{ vault_cli_pat}}"
+smb_password: "{{ vault_smb_password }}"

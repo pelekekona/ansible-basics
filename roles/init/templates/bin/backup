@@ -1,0 +1,23 @@
+#!/bin/bash
+
+	backupPfad="/home/fritzbox"
+	backupAnzahl="5"
+	backupName="pipi"
+##	DIENSTE_START_STOP="service mysql"
+
+#	Stoppe Dienste
+##	${DIENSTE_START_STOP} stop
+
+#	Backup
+##	dd if=/dev/mmcblk0 of=$backupPfad/$backupName-$(date +%Y%m%d-%H%M%S).img bs=1MB
+##	dd if=/dev/mmcblk0 bs=1MB status=progress | gzip > $backupPfad/$backupName-$(date +%Y%m%d).img.gz
+	sudo tar -zcf $backupPfad/$backupName-$(date +%Y%m%d-%H%M%S).tar /home/pi > $backupPfad/backup.log 2>&1
+
+#	Starte Dienste
+##	${DIENSTE_START_STOP} start
+
+#	Alte Sicherungen nach X neuen Sicherungen entfernen
+	pushd $backupPfad; ls -tr $backupPfad/$backupName* | head -n -$backupAnzahl | xargs rm; popd >> $backupPfad/backup.log 2>&1
+
+#	Beispiel: Image auspacken und zurückspielen
+##	gunzip -c ${BACKUP_PFAD}/${BACKUP_NAME}-$(date +%Y%m%d).img | dd of=/dev/mmcblk0

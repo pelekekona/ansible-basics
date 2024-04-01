@@ -47,11 +47,41 @@
     mode: 0600
     backup: yes
 
-- name: Template gGithub credentials
+- name: Template github credentials
   tags: ghcr
   ansible.builtin.template:
     src: templates/.git-credentials
     dest: /home/andy/.git-credentials
+    owner: andy
+    group: andy
+    mode: 0600
+    backup: yes
+
+- name: Template smb credentials
+  tags: smb
+  ansible.builtin.template:
+    src: templates/.smbcredentials
+    dest: /home/andy/.smbcredentials
+    owner: andy
+    group: andy
+    mode: 0600
+    backup: yes
+
+- name: Copy bin folder
+  tags: bin
+  ansible.builtin.copy:
+    src: templates/bin/
+    dest: /home/andy/bin/
+    owner: andy
+    group: andy
+    mode: 0700
+    backup: yes
+
+- name: Copy authorized keys (public keys)
+  tags: ssh
+  ansible.builtin.copy:
+    src: templates/.ssh/authorized_keys
+    dest: /home/andy/.ssh/
     owner: andy
     group: andy
     mode: 0600
