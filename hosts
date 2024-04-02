@@ -15,6 +15,7 @@
 # server3     ansible_host=192.168.0.3
 # server4     ansible_host=192.168.0.4
   mars        ansible_connection=local
+  raspberrypi ansible_host=raspberrypi
 
 # Add your own groups here. Hosts can be added to multiple groups like so:
 # [anothergroup]
@@ -26,3 +27,6 @@
 
 [database]
   mars
+
+[server]
+  raspberrypi

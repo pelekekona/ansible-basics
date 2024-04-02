@@ -3,10 +3,10 @@
 # Basic server initialization
 #
 
-- name: Write hostname using jinja2
-  ansible.builtin.template:
-    src: templates/test.j2
-    dest: /tmp/hostname
+# - name: Write hostname using jinja2
+#   ansible.builtin.template:
+#     src: templates/test.j2
+#     dest: /tmp/hostname
 
 - name: Template ".bashrc" file
   ansible.builtin.template:
@@ -26,6 +26,16 @@
     group: andy
     mode: 0700
     recurse: yes
+
+- name: Template ghcr credentials
+  tags: ghcr
+  ansible.builtin.template:
+    src: templates/.docker/config.json
+    dest: /home/andy/.docker/config.json
+    owner: andy
+    group: andy
+    mode: 0600
+    backup: yes
 
 - name: Template credentials for Gihub Container Registry (ghcr.io)
   tags: ghcr
